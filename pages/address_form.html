@@ -1,33 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/addrss_form.css">
-    <title>Address Book</title>
-    <script defer src="../js/address_form.js"></script>
-<body>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="../css/addrss_form.css">
+      <title>Address Book</title>
+      <script defer src="../js/address_form.js"></script>
+  </head>
+  <body>
     <header class="header-content header">
-        <div class="logo-content">
-            <img src="../assets/images/logo.png" class="logo-content-img" alt="">
-            <div>
-                <span class="add-text">Address</span><br />
-                <span class="add-text add-book">Book</span>
-            </div>
+      <div class="logo-content">
+        <img src="../assets/images/logo.png" class="logo-content-img" alt="">
+        <div>
+            <span class="add-text">Address</span><br />
+            <span class="add-text add-book">Book</span>
         </div>
+      </div>
     </header>
     <div class="form-content">
-        <form action="#" class="form" onreset="resetForm()" onsubmit="save(event); return false">
-            <div class="form-head">
-                <div class="head-title">
-                    <span>Person Address Form</span>
-                </div>
-                <div class="cancel-icon">
-                    <img src="../assets/images/Cancel_icon.PNG" alt="Menu" id="headings2_menu">
-                </div>
-            </div>
-        </form>
+      <form action="#" class="form" onreset="resetForm()" onsubmit="save(event); return false">
+        <div class="form-head">
+          <div class="head-title">
+              <span>Person Address Form</span>
+          </div>
+          <div class="cancel-icon">
+              <img src="../assets/images/Cancel_icon.PNG" alt="Menu" id="headings2_menu">
+          </div>
+        </div>
+        <div class="row-content">
+          <label for="name" class="label text">Full Name</label>
+          <input type="text" name="name" id="name" class="input" placeholder="Your Full Name.." required>
+          <error-output class="text-error" for="text"></error-output>
+        </div>
+        <div class="row-content">
+          <label for="address" class="label text">Address</label>
+          <textarea name="Address" id="address" class="input" placeholder="Address" style="height:100px;"></textarea>
+        </div>
+        <div class="select-content">
+          <div>
+              <label for="City" class="label text">City</label>
+              <select name="City" id="city">
+                  <option value="">Select City</option>
+                  <option value="Mumbai">Mumbai</option>
+              </select>
+          </div>
+          <div>
+              <label for="State" class="label text">State</label>
+              <select name="State" id="state">
+                  <option value="">Select State</option>
+                  <option value="MH">Maharashtra</option>
+              </select>
+          </div>
+          <div>
+              <label for="ZipCode" class="label text">ZipCode</label>
+              <select name="ZipCode" id="zipCode">
+                  <option value="">Select ZipCode</option>
+                  <option value="400001">400001</option>
+              </select>
+          </div>
+        </div>
+        <div class="row-content">
+          <label for="phonenumber" class="label text">Phone Number</label>
+          <input name="phonenumber" id="phonenumber" class="input" placeholder="Phone Number">
+        </div>
+        <div class="button-content">
+          <div class="submit-reset">
+              <button type="submit" class="button submitButton" id="submitButton">Add</button>
+              <button type="reset" class="button resetButton" id="resetButton">Reset</button>
+          </div>
+        </div>
+      </form>
     </div>
-</body>
+  </body>
 </html>
