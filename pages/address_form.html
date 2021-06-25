@@ -7,6 +7,7 @@
       <link rel="stylesheet" href="../css/addrss_form.css">
       <title>Address Book</title>
       <script defer src="../js/address_form.js"></script>
+      <script defer src="../js/AddressBookData.js"></script>
   </head>
   <body>
     <header class="header-content header">
@@ -19,7 +20,7 @@
       </div>
     </header>
     <div class="form-content">
-      <form action="#" class="form" onreset="resetForm()" onsubmit="save(event); return false">
+      <form action="#" class="form">
         <div class="form-head">
           <div class="head-title">
               <span>Person Address Form</span>
@@ -36,6 +37,7 @@
         <div class="row-content">
           <label for="address" class="label text">Address</label>
           <textarea name="Address" id="address" class="input" placeholder="Address" style="height:100px;"></textarea>
+          <error-output id="text-error-address" for="text"></error-output>
         </div>
         <div class="select-content">
           <div>
@@ -63,6 +65,7 @@
         <div class="row-content">
           <label for="phonenumber" class="label text">Phone Number</label>
           <input name="phonenumber" id="phonenumber" class="input" placeholder="Phone Number">
+          <error-output class="text-error" id="text-error-phonenumber" for="text"></error-output>
         </div>
         <div class="button-content">
           <div class="submit-reset">
