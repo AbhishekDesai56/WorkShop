@@ -46,5 +46,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
             textError_address.textContent  = e;
         }
     });
+
+    const submitButton = document.querySelector('#submitButton');
+    submitButton.addEventListener('click', function() {
+        save();
+    });
+
+    var resetButton = document.querySelector('#resetButton');
+    resetButton.addEventListener('click', function() {
+        resetForm();
+    });
+
+    const save = () => {
+        console.log('save');
+    }
+
+    const resetForm = () => {
+        console.log('reset');
+    }
 });
     
+
+
+
+
