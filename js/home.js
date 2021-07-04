@@ -41,7 +41,7 @@ const createInnerHtml = () => {
                   .map(personData => personData._id)
                   .indexOf(addressBookData._id);
     addressBookList.splice(index, 1);
-    localStorage.setItem("AddressBookList", JSON.stringify(empPayrollList));
+    localStorage.setItem("AddressBookList", JSON.stringify(addressBookList));
     createInnerHtml();
   }
 
@@ -49,5 +49,7 @@ const createInnerHtml = () => {
     let addressBookData = addressBookList.find(personData => personData._id == node.id);
     if(!addressBookData) return;
     localStorage.setItem('editPerson', JSON.stringify(addressBookData));
-    window.location.replace(site_properties.add_emp_payroll_page);
+    window.location.replace(site_properties.add_address_Book_page);
   }
+
+
