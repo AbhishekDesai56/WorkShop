@@ -1,0 +1,22 @@
+{
+    "AddressBookDB": [
+    {
+        "id": 1,
+        "_name": "Mark",
+        "_address": "Mahin, Mahim Road",
+        "_city": "Mumbai",
+        "_state": "Maharashtra",
+        "_zipCode": "400001",
+        "_phoneNumber": "9922241555"
+    },
+    {
+        "id": 2,
+        "_name": "John",
+        "_address": "Bandra, Bandra Road",
+        "_city": "Mumbai",
+        "_state": "Maharashtra",
+        "_zipCode": "400001",
+        "_phoneNumber": "9999999999"
+    }
+]
+}
