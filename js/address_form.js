@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
              addressBookData = createAddressBookData();
              //setAddressBookObject();
              createAndUpdateStorage();
-             window.location.replace('http://127.0.0.1:5501/pages/home.html');
+             window.location.replaace('../pages/home.html');
         } catch {
             return;
         }
@@ -83,7 +83,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     const resetForm = () => {
-        console.log('reset');
+        setValue('#name','');
+        setValue('#address','');
+        unsetSelectedValues('[name=city]');
+        unsetSelectedValues('[name=state]');
+        unsetSelectedValues('[name=zipCode]');
+        setValue('#phonenumber','');
+        setValue('.text-error','');
+        setValue('#text-error-address','');
+        setValue('#text-error-phonenumber','');
     }
 
     const createAddressBookData = () => {
@@ -131,6 +139,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         const element = document.querySelector(id);
         element.value = value;
     } 
+
+    const unsetSelectedValues = (propertyValue) => {
+        let allItems = document.querySelectorAll(propertyValue);
+        allItems.forEach(item => {
+            item.checked = false;
+        }); 
+    }    
 });
     
 
