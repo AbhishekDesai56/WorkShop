@@ -2,6 +2,7 @@ let addressBookList;
 window.addEventListener('DOMContentLoaded', (event) => {
     addressBookList = getAddressBookDataFromStorage();
     createInnerHtml();
+    localStorage.removeItem('editPerson');
 });
 
 const getAddressBookDataFromStorage = () => {
@@ -42,4 +43,11 @@ const createInnerHtml = () => {
     addressBookList.splice(index, 1);
     localStorage.setItem("AddressBookList", JSON.stringify(empPayrollList));
     createInnerHtml();
+  }
+
+  const update = (node) => {
+    let addressBookData = addressBookList.find(personData => personData._id == node.id);
+    if(!addressBookData) return;
+    localStorage.setItem('editPerson', JSON.stringify(addressBookData));
+    window.location.replace(site_properties.add_emp_payroll_page);
   }
