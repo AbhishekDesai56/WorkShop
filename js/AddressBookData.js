@@ -33,5 +33,20 @@ class AddressBookData {
             }
         }
         this._address = address;
-    } 
+    }
+    
+    get city() { return this._city }
+    set city(city) {
+        this._city = city;
+    }
+
+    get state() { return this._state }
+    set state(state) {
+        this._state = state;
+    }
+
+    get zipCode() { return this._zipCode }
+    set zipCode(zipCode) {
+        this._zipCode = zipCode;
+    }  
 }

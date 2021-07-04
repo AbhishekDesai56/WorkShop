@@ -1,3 +1,5 @@
+let addressBookObj = {};
+
 window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#name');
     let textError = document.querySelector('.text-error');
@@ -56,14 +58,53 @@ window.addEventListener('DOMContentLoaded', (event) => {
     resetButton.addEventListener('click', function() {
         resetForm();
     });
-
+    let addressBookData;
     const save = () => {
-        console.log('save');
+        try {
+             //addressBookData = createAddressBookData();
+             setAddressBookObject();
+        } catch {
+            return;
+        }
+    }
+
+    const setAddressBookObject = () => {
+        addressBookObj._address = getInputValueById('#address');
+        addressBookObj._city = getInputValueById('#city');
+        addressBookObj._state = getInputValueById('#state');
+        addressBookObj._zipCode = getInputValueById('#zipCode');
+        addressBookObj._phoneNumber = getInputValueById('#phonenumber');
     }
 
     const resetForm = () => {
         console.log('reset');
     }
+
+    const createAddressBookData = () => {
+        try {
+            addressBookData.name = getInputValueById('#name');
+        } catch(e) {
+            setValue('.text-error-name', e);
+            throw e;
+        }
+        addressBookData.address = getInputValueById('#address');
+        addressBookData.city = getInputValueById('#city');
+        addressBookData.state = getInputValueById('#state');
+        addressBookData.zipCode = getInputValueById('#zipCode');
+        addressBookData.phoneNumber = getInputValueById('#phonenumber');
+        alert(addressBookData.toString());
+        return addressBookData;
+    }
+
+    const getInputValueById = (id) => {
+        let value = document.querySelector(id).value;
+        return value;
+    }    
+
+    const setValue = (id, value) => {
+        const element = document.querySelector(id);
+        element.value = value;
+    } 
 });
     
 
