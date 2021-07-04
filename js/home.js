@@ -1,15 +1,38 @@
 let addressBookList;
 window.addEventListener('DOMContentLoaded', (event) => {
-    addressBookList = getAddressBookDataFromStorage();
+    if(site_properties.use_local_storage.match("true")) {
+        getAddressBookFromStorage();
+      } else getAddressBookDataFromServer(); 
+});
+
+const getAddressBookFromStorage = () => {
+    addressBookList = localStorage.getItem('AddressBookList') ?
+                        JSON.parse(localStorage.getItem('AddressBookList')) : [];
+    processAddressBookDataResponse();
+  }
+  
+const processAddressBookDataResponse = () => {
     createInnerHtml();
     localStorage.removeItem('editPerson');
-});
+  }
 
 const getAddressBookDataFromStorage = () => {
     return localStorage.getItem('AddressBookList') ?
                         JSON.parse(localStorage.getItem('AddressBookList')) : [];
   }
 
+  const getAddressBookDataFromServer = () => {
+    makeServiceCall("GET", site_properties.server_url, true)
+                    .then(responseText => {
+                      addressBookList = JSON.parse(responseText);
+              processAddressBookDataResponse();
+                    })
+                    .catch(error => {
+                        console.log("GET Error Status: " + JSON.stringify(error));
+                        addressBookList = [];
+              processAddressBookDataResponse();
+                    });
+    }
   
 const createInnerHtml = () => {
     const headerHtml = "<th>Fullname</th> <th>Address</th><th>City</th>" +
