@@ -62,7 +62,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
 
     const resetForm = () => {
-        console.log('reset');
+        setValue('#name','');
+        setValue('#address','');
+        unsetSelectedValues('[name=city]');
+        unsetSelectedValues('[name=state]');
+        unsetSelectedValues('[name=zipCode]');
+        setValue('#phonenumber','');
+        setValue('.text-error','');
+        setValue('#text-error-address','');
+        setValue('#text-error-phonenumber','');
     }
 
     const createAddressBookData = () => {
