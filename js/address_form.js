@@ -61,8 +61,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let addressBookData;
     const save = () => {
         try {
-             //addressBookData = createAddressBookData();
-             setAddressBookObject();
+             addressBookData = createAddressBookData();
+             //setAddressBookObject();
         } catch {
             return;
         }
@@ -74,6 +74,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         addressBookObj._state = getInputValueById('#state');
         addressBookObj._zipCode = getInputValueById('#zipCode');
         addressBookObj._phoneNumber = getInputValueById('#phonenumber');
+        alert();
     }
 
     const resetForm = () => {
@@ -81,6 +82,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     const createAddressBookData = () => {
+        addressBookData = new AddressBookData();
         try {
             addressBookData.name = getInputValueById('#name');
         } catch(e) {

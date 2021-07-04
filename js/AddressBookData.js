@@ -48,5 +48,10 @@ class AddressBookData {
     get zipCode() { return this._zipCode }
     set zipCode(zipCode) {
         this._zipCode = zipCode;
-    }  
+    }
+    
+    toString() {
+        return "name=" + this.name + ", Address=" + this.address + ", city=" + this.city 
+                + ", state=" + this.state + ", zipcode=" + this.zipCode + ", phonenumber=" + this.phoneNumber;
+    }
 }
