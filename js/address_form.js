@@ -51,7 +51,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     const submitButton = document.querySelector('#submitButton');
     submitButton.addEventListener('click', function() {
-        save();
+        save(event);
+        return false;
     });
 
     var resetButton = document.querySelector('#resetButton');
@@ -59,10 +60,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
         resetForm();
     });
     let addressBookData;
-    const save = () => {
+    const save = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         try {
              addressBookData = createAddressBookData();
              //setAddressBookObject();
+             createAndUpdateStorage();
+             window.location.replace('http://127.0.0.1:5501/pages/home.html');
         } catch {
             return;
         }
@@ -96,6 +101,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
         addressBookData.phoneNumber = getInputValueById('#phonenumber');
         alert(addressBookData.toString());
         return addressBookData;
+    }
+
+    function createAndUpdateStorage() {
+        let addressBookList = JSON.parse(localStorage.getItem("AddressBookList"));
+        if (addressBookList) {
+            let empPayrollData = addressBookList.
+                                find(addressBookData => addressBookData._id == addressBookData._id)
+            if(!empPayrollData) {
+                addressBookList.push(createAddressBookData());
+            } else {
+                const index = addressBookList
+                              .map(addressBookData => addressBookData._id)
+                              .indexOf(addressBookData._id);
+                addressBookList.splice(index, 1, createAddressBookData(addressBookData._id));
+            }
+        } else {
+            addressBookList = [createAddressBookData()];
+        }
+        localStorage.setItem("AddressBookList", JSON.stringify(addressBookList));
     }
 
     const getInputValueById = (id) => {
