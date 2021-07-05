@@ -73,6 +73,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
         setValue('#text-error-phonenumber', '');
     }
 
+    const unsetSelectedValues = (propertyValue) => {
+        let allItems = document.querySelectorAll(propertyValue);
+        allItems.forEach(item => {
+            item.checked = false;
+        }); 
+    }
+
+    
     const createAddressBookData = () => {
         addressBookData = new AddressBookData();
         try {
@@ -122,17 +130,35 @@ window.addEventListener('DOMContentLoaded', (event) => {
     checkForUpdate();
 });
 
-let addressBookData;
 const save = (event) => {
     event.preventDefault();
     event.stopPropagation();
     try {
         setAddressBookObject();
-        createAndUpdateStorage();
-        window.location.replace('http://127.0.0.1:5501/pages/home.html');
+        if (site_properties.use_local_storage.match("true")) {
+            createAndUpdateStorage();
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        } else {
+            createOrUpdateAddressBookData();
+            window.location.replace(site_properties.home_page);
+        }
     } catch {
         return;
     }
+}
+
+const createOrUpdateAddressBookData = () => {
+    let postURL = site_properties.server_url;
+    let methodCall = "POST"
+    makeServiceCall(methodCall, postURL, true, addressBookObj) 
+    .then(responseText => {
+        resetForm();
+        window.location.replace(site_properties.home_page);
+    })
+    .catch(error => {
+        throw error;
+    });
 }
 
 const setAddressBookObject = () => {
