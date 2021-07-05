@@ -64,8 +64,19 @@ const createInnerHtml = () => {
                   .map(personData => personData.id)
                   .indexOf(addressBookData.id);
     addressBookList.splice(index, 1);
-    localStorage.setItem("AddressBookList", JSON.stringify(addressBookList));
-    createInnerHtml();
+    if(site_properties.use_local_storage.match("true")) {
+      localStorage.setItem("AddressBookList", JSON.stringify(addressBookData));
+      createInnerHtml();
+    } else {
+      const deleteURL = site_properties.server_url + addressBookData.id.toString();
+      makeServiceCall("DELETE", deleteURL, true) 
+      .then(responseText => {
+          createInnerHtml();
+      })
+      .catch(error => {
+          console.log("DELETE Error Status:"+JSON.stringify(error));
+      });
+    }
   }
 
   const update = (node) => {
