@@ -151,6 +151,10 @@ const save = (event) => {
 const createOrUpdateAddressBookData = () => {
     let postURL = site_properties.server_url;
     let methodCall = "POST"
+    if(isUpdate) {
+        methodCall = "PUT"
+        postURL = postURL + addressBookObj.id;
+    }
     makeServiceCall(methodCall, postURL, true, addressBookObj) 
     .then(responseText => {
         resetForm();

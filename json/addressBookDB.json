@@ -28,11 +28,11 @@
       "id": 3
     },
     {
-      "_name": "Ad",
+      "_name": "Add",
       "_address": "Add",
       "_city": "Mumbai",
       "_state": "Maharashtra",
-      "_zipCode": "500002",
+      "_zipCode": "400001",
       "_phoneNumber": "99222222222",
       "id": 4
     },
